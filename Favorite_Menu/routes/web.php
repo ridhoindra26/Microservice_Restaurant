@@ -13,6 +13,15 @@
 |
 */
 
+// Get Favorit Menu by ID User
+$router->get('/favorite/{id_user}', 'FavoriteController@getFavorite');
+
+// Post Tambah Favorit Menu by ID User
+$router->post('/favorite/{id_user}/{id_menu}', 'FavoriteController@addFavorite');
+
+// Post Delete Favorit Menu by ID User
+$router->post('/favorite/delete/{id_user}/{id_menu}', 'FavoriteController@deleteFavorite');
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
