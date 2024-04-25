@@ -2,6 +2,7 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,6 +13,9 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+
+// Get Menu API
+$router->get('/menu', 'MenuController@getMenu');
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
