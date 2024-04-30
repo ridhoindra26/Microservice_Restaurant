@@ -64,7 +64,12 @@ class MenuController extends Controller
     }
 
     function getMenuRestaurant($restaurant_id){
-        
-        return response()->json();
+        $menu = $this->menu;
+        $data = collect($menu)->where('resto_id',$restaurant_id);
+        $x = array();
+        foreach ($data as $i) {
+            array_push($x,$i);
+        }
+        return response()->json($x);
     }
 }

@@ -3,7 +3,7 @@ const app = express()
 
 const reviews = [
     {user_id:1, restaurant_id:1, review:"Bersih, makannnya juga enak"},
-    {user_id:2, restaurant_id:2, review:"Tempatnya agak sempit dan pengap"},
+    {user_id:1, restaurant_id:2, review:"Tempatnya agak sempit dan pengap"},
     {user_id:2, restaurant_id:3, review:"Dari luar, tempatnya sangat estetik"},
     {user_id:2, restaurant_id:2, review:"Agak kecil tempatnya, tapi makannya murah dan lumayan enak"}
 ]

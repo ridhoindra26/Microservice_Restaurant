@@ -8,21 +8,21 @@
   </head>
   <body>
     <div class="container mt-5">
-      <h1 class="mb-3">Restaurant Review App</h1>
+      <h1 class="mb-3">Profil Pengguna</h1>
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">{{info['name']}}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">{{info['category']}}</h6>
-          <p class="card-text">{{info['description']}}</p>
+          <h5 class="card-title">Nama : {{info[0]['username']}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Email : {{info[0]['email']}}</h6>
+          <p class="card-text">Lokasi : {{info[0]['location']}}</p>
         </div>
       </div>
  
       <div class="Review mb-4">
-        <h6>Review</h6>
+        <h6>Riwayat Review</h6>
         {% for x in review %}
         <div class="card">
           <div class="card-body">
-            <h6 class="card-title">User {{x['user_id']}}</h6>
+            <h6 class="card-title">Restaurant {{x['restaurant_id']}}</h6>
             <p class="card-text">{{x['review']}}</p>
           </div>
         </div>
@@ -31,13 +31,14 @@
       
       <!-- {{menu}} -->
       <div class="Menu">
-        <h6>Menu</h6>
+        <h6>Menu Favorit</h6>
         <div class="row">
           {% for y in menu %}
           <div class="col-4">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">Nama Menu : {{y['nama_menu']}}</h6>
+                <h6 class="card-title">Resto : {{y['resto_id']}}</h6>
+                <p class="card-text">Nama Menu : {{y['nama_menu']}}</p>
                 <p class="card-text">Harga : {{y['harga']}}</p>
               </div>
             </div>

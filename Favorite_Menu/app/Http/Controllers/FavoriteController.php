@@ -10,7 +10,7 @@ class FavoriteController extends Controller
 {
     function getFavorite($id_user)
     {
-        $data = Favorit::where('id_user', '=', $id_user)->first();
+        $data = Favorit::where('id_user', '=', $id_user)->get('id_menu');
         return response()->json($data);
     }
 
