@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\collect;
 
 class MenuController extends Controller
 {
@@ -60,5 +61,10 @@ class MenuController extends Controller
 
     function getMenu(){
         return response()->json($this->menu);
+    }
+
+    function getMenuRestaurant($restaurant_id){
+        
+        return response()->json();
     }
 }

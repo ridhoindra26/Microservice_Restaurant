@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
 */
 
 // Get Menu API
-$router->get('/menu', 'MenuController@getMenu');
+$router->get('/menu/{restaurant_id}', 'MenuController@getMenu');
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
