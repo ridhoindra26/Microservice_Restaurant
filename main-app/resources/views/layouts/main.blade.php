@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {{-- Google Material Icons --}}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <style>
+        body {
+            background-color: #F8F8FF
+        }
+    </style>
 
     <title>App | @yield('title')</title>
 </head>
@@ -12,7 +19,7 @@
     @include('layouts.navbar')
 
     {{-- Content --}}
-    <div class="container pt-5">
+    <div class="main-content container pt-5">
         @yield('content')
     </div>
 
