@@ -34,5 +34,5 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/favorite-menu', [FavoriteMenuController::class, 'favoriteByUser']);
 Route::get('/user/review', [ReviewController::class, 'reviewByUser']);
 
-Route::post('/store-favorite', [FavoriteMenuController::class, 'storeFavorite']);
-Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite']);
+Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('auth');
+Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('auth');
