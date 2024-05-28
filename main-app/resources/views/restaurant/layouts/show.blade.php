@@ -16,7 +16,7 @@
 {{-- Header :start --}}
 <div class="row mb-4">
     <div class="col-md-5">
-        <img src="../img/pic1.png" class="d-block w-100 object-fit-cover rounded-2 mb-2" alt="notfound" height="300px">
+        <img src="{{ url('img/pic1.png') }}" class="d-block w-100 object-fit-cover rounded-2 mb-2" alt="notfound" height="300px">
     </div>
     <div class="col-md-7">
         <div class="row mb-3">
