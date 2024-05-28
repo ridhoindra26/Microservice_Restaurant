@@ -52,13 +52,13 @@
 {{-- Body :start --}}
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link text-danger @if(Route::is('resto-details')) active fw-semibold @endif" href="#">Details</a>
+        <a class="nav-link text-danger @if(Route::is('resto-details')) active fw-semibold @endif" href="/restaurants/{{ $resto->id }}">Details</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-danger @if(Route::is('resto-menus')) active fw-semibold @endif" href="/restaurants/6/menu">Menu</a>
+        <a class="nav-link text-danger @if(Route::is('resto-menus')) active fw-semibold @endif" href="/restaurants/{{ $resto->id }}/menu">Menu</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-danger @if(Route::is('resto-reviews')) active fw-semibold @endif" href="/restaurants/6/review">Review</a>
+        <a class="nav-link text-danger @if(Route::is('resto-reviews')) active fw-semibold @endif" href="/restaurants/{{ $resto->id }}/review">Review</a>
     </li>
 </ul>
 
