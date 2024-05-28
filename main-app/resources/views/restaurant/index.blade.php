@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title')Restaurant @endsection
+@section('title')Katalog @endsection
 
 @section('content')
 

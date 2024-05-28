@@ -24,13 +24,13 @@
         }
     </style>
 
-    <title>App | @yield('title')</title>
+    <title>@yield('title') | Restaurant Review App</title>
 </head>
 <body>
     @include('layouts.navbar')
 
     {{-- Content --}}
-    <div class="main-content container-xl pt-5">
+    <div class="main-content container pt-3">
         @yield('content')
     </div>
 
