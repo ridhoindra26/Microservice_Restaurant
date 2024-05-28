@@ -29,7 +29,7 @@ class Restaurant extends Model
         }
     }
 
-    public static function getRestaurant($id)
+    public static function getRestaurant(string $id)
     {
         try {
 
@@ -37,14 +37,35 @@ class Restaurant extends Model
                 'x-hasura-admin-secret' => 'OYD5qBvKTzW6C3UH1luLce5kwwSxnknMntTBh1zY2oRrbvXhhvnuSlKQJe7DUzMT'
             ])->get("https://tubeseai-restaurant.hasura.app/api/rest/get-restaurant-id/{$id}");
 
-            $data = $response->json('restaurant_db_restaurant');
-            $data = Restaurant::hydrate($data)->flatten()->first();
+            $resto = $response->json('restaurant_db_restaurant');
+            $resto = Restaurant::hydrate($resto)->first();
+            $media = $response->json('restaurant_db_restaurant_media');
+            $media = Restaurant::hydrate($media);
 
-            return $data;
+            return compact('resto', 'media');
 
         } catch (\Exception $e) {
             // Handle Error
             return dd($e);
         }
     }
+
+    // public static function getMediaRestaurant(string $id)
+    // {
+    //     try {
+
+    //         $response = Http::withHeaders([
+    //             'x-hasura-admin-secret' => 'OYD5qBvKTzW6C3UH1luLce5kwwSxnknMntTBh1zY2oRrbvXhhvnuSlKQJe7DUzMT'
+    //         ])->get("https://tubeseai-restaurant.hasura.app/api/rest/get-resto-media/{$id}");
+
+    //         $data = $response->json('restaurant_db_restaurant_media');
+    //         $data = Restaurant::hydrate($data)->flatten();
+
+    //         return $data;
+
+    //     } catch (\Exception $e) {
+    //         // Handle Error
+    //         return dd($e);
+    //     }
+    // }
 }
