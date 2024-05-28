@@ -14,7 +14,7 @@
         <div class="carousel-inner rounded-3">
             @foreach ($carouselResto as $resto)
             <div class="carousel-item active">
-                <img src="img/pic1.png" class="d-block w-100 object-fit-cover" alt="..." height="300px">
+                <img src="{{ asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
                 <div class="carousel-caption d-none d-md-block">
                     <h5 class="shadow-lg bg-black bg-opacity-50 px-1">{{ $resto->name }}</h5>
                     <p class="shadow-lg bg-black bg-opacity-50 px-1">{{ $resto->description }}</p>
@@ -40,10 +40,9 @@
             <div class="row justify-content-evenly m-0 ">
                 @forelse ($restaurantData as $resto)
                 <div class="card p-0 col-sm-4 m-2 border-0 shadow-sm" style="width: 17rem;">
-                    {{-- <img src={{ $resto['logo'] ?? "img/pic3.jpg" }} class="card-img-top object-fit-cover" alt="..." height="200px"> --}}
                     <a href="/restaurants/{{ $resto->id }}">
                         <div class="position-relative">
-                            <img src="img/pic3.jpg" class="card-img-top object-fit-cover" alt="..." height="150px">
+                            <img src="{{ $resto->logo ?? asset('img/pic3.jpg') }}" class="card-img-top object-fit-cover" alt="..." height="150px">
                             <div class=" bg-warning bg-gradient text-secondary position-absolute top-0 end-0 p-2 rounded-bottom-0 rounded-end-1">
                                 4.5
                             </div>
@@ -54,9 +53,6 @@
                         </div>
                     </a>
                     <div class="card-desc px-3 py-2">
-                        {{-- <p class="card-text">
-                            {{ $resto['description'] }}
-                        </p> --}}
                         <div class="row">
                             <small class="col d-flex justify-content-start">
                                 <span class="material-symbols-rounded fs-5 align-items-center me-1 text-danger">place</span>{{ $resto->address }}
