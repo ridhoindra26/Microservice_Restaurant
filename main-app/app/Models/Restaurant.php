@@ -20,6 +20,8 @@ class Restaurant extends Model
 
             $data = $response->json('restaurant_db_restaurant');
             $data = Restaurant::hydrate($data)->flatten();
+            // return dd($data);
+
 
             return $data;
 

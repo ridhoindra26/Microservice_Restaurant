@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/restaurants');
 });
 
 Route::get('/register', [RegisterController::class, 'index']);
@@ -20,7 +20,7 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login/auth', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/restaurants', [RestaurantController::class, 'index']);
+Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants');
 Route::get('/restaurants/{id}', [RestaurantController::class, 'show'])->name('resto-details');
 
 Route::get('/restaurants/{id}/menu', [MenuController::class, 'menuByResto'])->name('resto-menus');

@@ -16,17 +16,15 @@
 {{-- Header :start --}}
 <div class="row mb-2">
     <div class="col-md-5 mb-2">
-        {{-- <img src="{{ asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover rounded-2 mb-2" alt="notfound" height="300px">
-         --}}
          <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
+            <div class="carousel-inner border rounded-2">
               @foreach ($restoMedia as $media)
               <div class="carousel-item active">
-                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover rounded-2" alt="..." height="300px">
+                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover " alt="{{ $media->name }}" height="300px">
               </div>   
               @endforeach
               <div class="carousel-item">
-                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover rounded-2" alt="..." height="300px">
+                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover " alt="{{ $resto->name }} height="300px">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -53,9 +51,6 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- <div class=" d-flex" id="description">
-                <p class="">{{ $resto->description }}</p>
-            </div> --}}
             <div class=" d-flex" id="address">
                 <span class="material-symbols-rounded text-secondary">place</span>
                 <p class="ms-2">{{ $resto->address }}</p>
