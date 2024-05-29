@@ -30,7 +30,7 @@
     @include('layouts.navbar')
 
     {{-- Content --}}
-    <div class="main-content container pt-3">
+    <div class="main-content container pt-3 mb-5">
         @yield('content')
     </div>
 

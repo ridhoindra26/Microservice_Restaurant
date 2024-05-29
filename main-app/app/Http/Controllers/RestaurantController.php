@@ -17,6 +17,10 @@ class RestaurantController extends Controller
         $carouselData = $data->sortByDesc('id')->take(3);
         $topRatedData = $data->take(3);
 
+        // return dd($data->first());
+
+        // return dd($data->select('id', 'name')->sortBy('id'));
+
         return view('restaurant.index', [
             'restaurantData' => $data,
             'carouselResto' => $carouselData,
@@ -26,11 +30,14 @@ class RestaurantController extends Controller
 
     public function show(string $id)
     {
-
         $data = Restaurant::getRestaurant($id);
 
+        $resto = $data['resto'];
+        $media = $data['media'];
+
         return view('restaurant.show', [
-            'resto' => $data
+            'resto' => $resto,
+            'restoMedia' => $media
         ]);
     }
 }
