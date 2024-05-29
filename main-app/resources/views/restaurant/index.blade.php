@@ -14,7 +14,7 @@
         <div class="carousel-inner rounded-3">
             @foreach ($carouselResto as $resto)
             <div class="carousel-item active">
-                <img src="{{ asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
+                <img src="{{ $resto->logo ?? asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
                 <div class="carousel-caption d-none d-md-block">
                     <h5 class="shadow-lg bg-black bg-opacity-50 px-1">{{ $resto->name }}</h5>
                     <p class="shadow-lg bg-black bg-opacity-50 px-1">{{ $resto->description }}</p>
