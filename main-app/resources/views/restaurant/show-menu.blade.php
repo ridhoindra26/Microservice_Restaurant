@@ -3,6 +3,20 @@
 @section('body')
 
 <div class="container mt-5">
+    {{-- @isset($message)
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endisset --}}
+
+    @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <h2 class="mb-4">Daftar Menu</h2>
     <!-- Menu Item 1 -->
     @foreach ($menus as $menu)
@@ -45,6 +59,8 @@
     </div>
     @endforeach
 </div>
+
+
     
 @endsection
 
