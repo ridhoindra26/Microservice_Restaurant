@@ -25,7 +25,7 @@ class LoginController extends Controller
         return $shortToken;
     }
 
-    public function index(Request $request) 
+    public function index() 
         {   
             return view('auth.login');
     }
