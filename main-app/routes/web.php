@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('a');
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register/store', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/auth', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
@@ -34,5 +34,5 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/favorite-menu', [FavoriteMenuController::class, 'favoriteByUser']);
 Route::get('/user/review', [ReviewController::class, 'reviewByUser']);
 
-Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite']);
-Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite']);
+Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('jwt.auth');
+Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('jwt.auth');

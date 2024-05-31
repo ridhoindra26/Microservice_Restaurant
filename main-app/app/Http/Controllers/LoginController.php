@@ -10,12 +10,14 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Tymon\JWTAuth\JWTManager;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
     public function generateShortToken($user)
     {
         $token = JWTAuth::fromUser($user);
+        Session::put('user', $user);
 
         // Shorten the token to 10 characters
         $shortToken = substr($token, 0, 10);
@@ -23,8 +25,8 @@ class LoginController extends Controller
         return $shortToken;
     }
 
-    public function index() 
-        {
+    public function index(Request $request) 
+        {   
             return view('auth.login');
     }
 
@@ -35,20 +37,16 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        // $data = $this->validate($request, [
-        //     'email' => 'required|email',
-        //     'password' => 'required',
-        // ]);
-    
-        $credentials = $validator->only('email', 'password');
+
+        $credentials = $validator->validated();
     
         if (!$token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-    
+        // dd(Auth::user());
         $shortToken = $this->generateShortToken(Auth::user());
     
-        return response()->json(['token' => $shortToken]);
+        return redirect()->intended('/restaurants');
     }
     
     public function logout()

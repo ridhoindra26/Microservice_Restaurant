@@ -13,9 +13,9 @@ class CheckSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('user')) {
+        if (!Session::has('user')) {
             // Store the current URL in the session
-            return redirect()->route('login')->withErrors('Silahkan Login Terlebih Dahulu');
+            return redirect()->route('a')->withErrors('Silahkan Login Terlebih Dahulu');
         }
         return $next($request);
     }
