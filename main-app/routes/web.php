@@ -36,3 +36,7 @@ Route::get('/user/review', [ReviewController::class, 'reviewByUser']);
 
 Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('jwt.auth');
 Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('jwt.auth');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->middleware('auth');
