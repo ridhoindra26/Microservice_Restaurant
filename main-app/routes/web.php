@@ -13,14 +13,15 @@ Route::get('/', function () {
     return redirect('/restaurants');
 });
 
+
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register/store', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/auth', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants');
+Route::get('/restaurants', [RestaurantController::class, 'index'])->name('resto');
 Route::get('/restaurants/{id}', [RestaurantController::class, 'show'])->name('resto-details');
 
 Route::get('/restaurants/{id}/menu', [MenuController::class, 'menuByResto'])->name('resto-menus');
@@ -34,5 +35,9 @@ Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/favorite-menu', [FavoriteMenuController::class, 'favoriteByUser']);
 Route::get('/user/review', [ReviewController::class, 'reviewByUser']);
 
-Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('auth');
-Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('auth');
+Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('jwt.auth');
+Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('jwt.auth');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->middleware('auth');

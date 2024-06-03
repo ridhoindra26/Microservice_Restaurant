@@ -13,7 +13,7 @@
             <a class="nav-link disabled">Disabled</a>
             </li> --}}
         </ul>
-        @if(Auth::user())
+        @if(Session::has('user'))
         <a href="/user" class="text-white"><span class="material-symbols-rounded">person</span></a>
         @else
         <a href="/register" class="btn btn-secondary" type="submit">Register</a>
