@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\FavMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,8 @@ class UserController extends Controller
 
         $userId = Auth::user();
         $reviews = Review::getByUserId($user->id);
-        return view('user.show', compact('user','userId', 'reviews'));
+        $fav_menu = FavMenu::getById($user->id);
+        return view('user.show', compact('user','userId', 'reviews','fav_menu'));
 
     }
 

@@ -20,7 +20,28 @@ class Menu extends Model
             ])->get("https://rare-jennet-39.hasura.app/api/rest/getmenu/{$id}");
             
             $data = $response->json('menu');
-            $data = Menu::hydrate($data)->flatten();
+            if ($data) {
+                $data = Menu::hydrate($data)->flatten();
+
+                return $data;
+            }
+
+            return $data;
+            
+        } catch (\Exception $e) {
+            return dd($e);
+        }
+    }
+
+    public static function getMenuById($id)
+    {
+        try {
+
+            $response = Http::withHeaders([
+                'x-hasura-admin-secret' => self::$key
+            ])->get("https://rare-jennet-39.hasura.app/api/rest/getMenuByPK/{$id}");
+            
+            $data = $response->json('menu_by_pk');
 
             return $data;
 
