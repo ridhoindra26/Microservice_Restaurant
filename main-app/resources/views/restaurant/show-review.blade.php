@@ -12,7 +12,7 @@
     @endif
 
     <div class="d-flex mb-4">
-        <h3>Comments</h3>
+        <h3>Comments ({{ $countReviews }})</h3>
     </div>
 
     <div id="reviews-container" class="mb-5">

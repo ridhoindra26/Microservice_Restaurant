@@ -25,8 +25,9 @@ class ReviewController extends Controller
         $resto = $data['resto'];
         $restoMedia = $data['media'];
         $reviews = Review::getByRestaurantId($id);
+        $countReviews = $reviews->count();
 
-        return view('restaurant.show-review', compact('user','data', 'resto', 'restoMedia', 'reviews'));
+        return view('restaurant.show-review', compact('user','data', 'resto', 'restoMedia', 'reviews', 'countReviews'));
     }
 
     // public function getReviewByUserId()
