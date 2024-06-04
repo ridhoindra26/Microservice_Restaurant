@@ -23,12 +23,30 @@ class User extends Authenticatable implements JWTSubject
             ])->get('https://just-mastiff-98.hasura.app/api/rest/get-user-id');
 
             $data = $response->json('User_Restaurant');
-            // dd($data);
 
             if ($data) {
                 $data = User::hydrate($data)->flatten();
                 return $data;
             }
+
+            return $data;
+
+        } catch (\Exception $e) {
+            // Handle Error
+            return dd($e);
+        }
+    }
+
+    public static function createUser($user)
+    {   
+
+        try {
+
+            $response = Http::withHeaders([
+                'x-hasura-admin-secret' => self::$key
+            ])->post("https://just-mastiff-98.hasura.app/api/rest/{$user['email']}/{$user['username']}/{$user['password']}");
+
+            $data = $response->json('insert_User_Restaurant.returning');
 
             return $data;
 

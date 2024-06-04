@@ -6,14 +6,20 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <div class="card">
+            <div class="card mb-2">
                 <div class="card-header">
                     <h4>Profile</h4>
                 </div>
                 <div class="card-body">
-                    <p><strong>Name:</strong> Zahra Afifa Aulia</p>
-                    <p><strong>Email:</strong> zara1@gmail.com</p>
+                    <p><strong>Name:</strong> {{ $user->username }}</p>
+                    <p><strong>Email:</strong> {{ $user->email }}</p>
                 </div>
+            </div>
+            <div class="">
+                <form action="/logout" method="POST">
+                @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
         <div class="col-md-8">

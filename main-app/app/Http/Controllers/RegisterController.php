@@ -9,29 +9,26 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'username' => 'required|unique:users',
             'email' => 'required|unique:users|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => ''
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
-
-        $user = User::create([
+        $user = User::createUser([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return redirect('/login')->with('success', 'User registered successfully');
     }
 
     public function index() 
-        {
-            return view('auth.register');
+    {
+        return view('auth.register');
     }
 }
