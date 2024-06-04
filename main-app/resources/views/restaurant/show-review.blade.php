@@ -16,6 +16,7 @@
     </div>
 
     <div id="reviews-container" class="mb-5">
+        {{-- @dd($reviews) --}}
         @foreach ($reviews as $review)
             <div id="profile" class="d-flex pt-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -81,39 +82,44 @@
         @endforeach
     </div>
 
-    <div class="text-center mb-5">
-        <button class="btn btn-primary mb-3" id="addReviewBtn" onclick="showReviewForm()">Add Review</button>
-    </div>
+    @if ($user)
+        <div class="text-center mb-5">
+            <button class="btn btn-primary mb-3" id="addReviewBtn" onclick="showReviewForm()">Add Review</button>
+        </div>
 
-    <div id="reviewForm" class="card" style="display: none;">
-        <div class="card-header">
-            <h5 class="card-title">Add a Review</h5>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('reviews.store') }}" method="POST">
-                @csrf
-                <input type="hidden" value="{{ $resto->id }}" name="restaurant_id" id="restaurant_id">
-                <input type="hidden" value="{{ $user->id }}" name="user_id" id="user_id">
-                <div class="form-group mb-3">
-                    <label for="review">Review:</label>
-                    <textarea id="review" name="review" class="form-control" rows="4" required></textarea>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="rating">Rating:</label>
-                    <div id="rating" class="star-rating">
-                        <input type="hidden" name="rating" id="rating-value" required>
-                        <span class="star" data-value="1">&#9733;</span>
-                        <span class="star" data-value="2">&#9733;</span>
-                        <span class="star" data-value="3">&#9733;</span>
-                        <span class="star" data-value="4">&#9733;</span>
-                        <span class="star" data-value="5">&#9733;</span>
+        <div id="reviewForm" class="card" style="display: none;">
+            <div class="card-header">
+                <h5 class="card-title">Add a Review</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('reviews.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" value="{{ $resto->id }}" name="restaurant_id" id="restaurant_id">
+                    <input type="hidden" value="{{ $user->id }}" name="user_id" id="user_id">
+                    <div class="form-group mb-3">
+                        <label for="review">Review:</label>
+                        <textarea id="review" name="review" class="form-control" rows="4" required></textarea>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Review</button>
-                <button type="button" class="btn btn-secondary" onclick="hideReviewForm()">Cancel</button>
-            </form>
+                    <div class="form-group mb-3">
+                        <label for="rating">Rating:</label>
+                        <div id="rating" class="star-rating">
+                            <input type="hidden" name="rating" id="rating-value" required>
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="button" class="btn btn-secondary" onclick="hideReviewForm()">Cancel</button>
+                </form>
+            </div>
         </div>
-    </div>
+    @else
+        <h5>Silahkan Login Terlebih Dahulu, Untuk Menambahkan Review</h5>
+    @endif
+    
 </div>
 
 <style>
