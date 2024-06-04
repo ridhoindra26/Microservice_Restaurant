@@ -6,7 +6,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-sm">
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            <div class="card shadow-sm mb-3">
                 <div class="card-header bg-primary text-white">{{ __('Login') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ url('/login/auth') }}">
@@ -36,12 +42,15 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
                         </div>
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link d-block text-center mt-3" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-                        @endif
                     </form>
                 </div>
             </div>
+            @if (session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
         </div>
     </div>
 </div>
