@@ -11,11 +11,12 @@ class UserController extends Controller
     // Tambahkan metode index() di sini jika belum ada
     public function index()
     {   
+        $user = session()->get('user');
         // Logika untuk menampilkan halaman profil
 
         $userId = Auth::user();
-        $reviews = Review::getByUserId($userId);
-        return view('user.show', compact('userId', 'reviews'));
+        $reviews = Review::getByUserId($user->id);
+        return view('user.show', compact('user','userId', 'reviews'));
 
     }
 
