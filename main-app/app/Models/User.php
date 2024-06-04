@@ -14,6 +14,22 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
     protected static $key = 'X3nDEXUY1SFZ6iQISjmKM5O6ZwB60aCDiNX5fSmMS2SNCueFnIAbHe6VSo1C77lR';
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
     public static function getUser()
     {
         try {

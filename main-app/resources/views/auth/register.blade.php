@@ -9,7 +9,8 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">{{ __('Register') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="/register/store">
+                    <form method="POST" action="{{ url('/register/store') }}">
+
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">{{ __('Username') }}</label>

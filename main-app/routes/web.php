@@ -14,7 +14,7 @@ Route::get('/', function () {
 })->name('a');
 
 Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register/store', [RegisterController::class, 'store']);
+Route::post('/register/store', [RegisterController::class, 'register']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/auth', [LoginController::class, 'authenticate']);
@@ -26,13 +26,21 @@ Route::get('/restaurants/{id}', [RestaurantController::class, 'show'])->name('re
 Route::get('/restaurants/{id}/menu', [MenuController::class, 'menuByResto'])->name('resto-menus');
 
 Route::get('/restaurants/{id}/review', [ReviewController::class, 'reviewByResto'])->name('resto-reviews');
-Route::post('/store-review', [ReviewController::class, 'storeReview']);
+Route::get('/reviews/user/{userId}', [ReviewController::class, 'getReviewByUserId']);
+Route::post('/store-review', [ReviewController::class, 'storeReview'])->name('reviews.store');
 Route::put('/update-review/{id}', [ReviewController::class, 'updateReview']);
 Route::delete('/delete-review/{id}', [ReviewController::class, 'deleteReview']);
 
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/favorite-menu', [FavoriteMenuController::class, 'favoriteByUser']);
-Route::get('/user/review', [ReviewController::class, 'reviewByUser']);
+Route::get('/user/review', [ReviewController::class, 'getReviewByUserId']);
+
+// Route::get('/reviews/restaurant/{restaurantId}', [ReviewController::class, 'getReviewByRestaurantId']);
+// Route::get('/reviews/user/{userId}', [ReviewController::class, 'getReviewByUserId']);
+// Route::post('/reviews/restaurant/{restaurantId}', [ReviewController::class, 'insertReview']) ->name('reviews.store');
+// Route::put('/reviews/{idReview}', [ReviewController::class, 'updateReview']);
+// Route::delete('/reviews/{reviewId}', [ReviewController::class, 'deleteReview']);
+
 
 Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite'])->middleware('jwt.auth');
 Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite'])->middleware('jwt.auth');

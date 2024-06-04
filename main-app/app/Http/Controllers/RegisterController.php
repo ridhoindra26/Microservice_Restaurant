@@ -11,15 +11,22 @@ class RegisterController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'username' => 'required|unique:users',
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:users',
             'email' => 'required|unique:users|email',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => ''
         ]);
 
-        $user = User::createUser([
-            'username' => $request->username,
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+
             'email' => $request->email,
             'password' => $request->password,
         ]);
