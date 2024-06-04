@@ -14,7 +14,7 @@ class UserController extends Controller
         if (Session::has('user')) {
             $user = session()->get('user');
             $reviews = Review::getByUserId($user->id);
-        $fav_menu = FavMenu::getById($user->id);
+            $fav_menu = FavMenu::getById($user->id);
             
             return view('user.show', compact('user', 'reviews','fav_menu'));
         } else {
