@@ -14,6 +14,22 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
     protected static $key = 'X3nDEXUY1SFZ6iQISjmKM5O6ZwB60aCDiNX5fSmMS2SNCueFnIAbHe6VSo1C77lR';
 
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
     public static function getUser()
     {
         try {
@@ -23,12 +39,54 @@ class User extends Authenticatable implements JWTSubject
             ])->get('https://just-mastiff-98.hasura.app/api/rest/get-user-id');
 
             $data = $response->json('User_Restaurant');
-            // dd($data);
 
             if ($data) {
                 $data = User::hydrate($data)->flatten();
                 return $data;
             }
+
+            return $data;
+
+        } catch (\Exception $e) {
+            // Handle Error
+            return dd($e);
+        }
+    }
+
+    public static function getUserById($userId)
+    {
+        try {
+
+            $response = Http::withHeaders([
+                'x-hasura-admin-secret' => self::$key
+            ])->get("https://just-mastiff-98.hasura.app/api/rest/get-user-id/{$userId}");
+
+            $data = $response->json('User_Restaurant');
+
+
+            if ($data) {
+                $data = User::hydrate($data)->first();
+                return $data;
+            }
+
+            return $data;
+
+        } catch (\Exception $e) {
+            // Handle Error
+            return dd($e);
+        }
+    }
+
+    public static function createUser($user)
+    {   
+
+        try {
+
+            $response = Http::withHeaders([
+                'x-hasura-admin-secret' => self::$key
+            ])->post("https://just-mastiff-98.hasura.app/api/rest/{$user['email']}/{$user['username']}/{$user['password']}");
+
+            $data = $response->json('insert_User_Restaurant.returning');
 
             return $data;
 

@@ -9,12 +9,13 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">{{ __('Register') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('/register') }}">
+                    <form method="POST" action="{{ url('/register/store') }}">
+
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">{{ __('Name') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            @error('name')
+                            <label for="username" class="form-label">{{ __('Username') }}</label>
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus>
+                            @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -39,8 +40,8 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">{{ __('Register') }}</button>

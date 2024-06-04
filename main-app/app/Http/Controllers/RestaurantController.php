@@ -18,7 +18,7 @@ class RestaurantController extends Controller
     {
         $data = Restaurant::getAllRestaurant();
         $carouselData = $data->sortByDesc('id')->take(3);
-        $topRatedData = $data->take(3);
+        $topRatedData = $data->sortByDesc('rating')->take(3);
 
         // return dd($data->first());
 

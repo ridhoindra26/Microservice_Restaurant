@@ -9,29 +9,35 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+    public function index() 
+    {
+        if(session('user')) {
+            return redirect()->intended('/restaurants');
+        }
+
+        return view('auth.register');
+    }
+
     public function register(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'username' => 'required|unique:users',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:6',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:6|confirmed',
         ]);
+
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $user = User::create([
+        $user = User::createUser([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
-    }
-
-    public function index() 
-        {
-            return view('auth.register');
+        return redirect('/login')->with('success', 'User registered successfully');
     }
 }

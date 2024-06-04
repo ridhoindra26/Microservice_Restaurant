@@ -16,15 +16,17 @@
 {{-- Header :start --}}
 <div class="row mb-2">
     <div class="col-md-5 mb-2">
-         <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner border rounded-2">
+        {{-- <img src="{{ asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover rounded-2 mb-2" alt="notfound" height="300px">
+         --}}
+            <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner border border-gray-400 rounded-2">
               @foreach ($restoMedia as $media)
               <div class="carousel-item active">
-                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover " alt="{{ $media->name }}" height="300px">
+                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
               </div>   
               @endforeach
               <div class="carousel-item">
-                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover " alt="{{ $resto->name }} height="300px">
+                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -46,7 +48,7 @@
             <div class="col-4 d-flex justify-content-end">
                 <div class="bg-danger p-2 fw-semibold text-white rounded-bottom-4">
                     <span class="material-symbols-rounded text-warning">star</span>
-                    <div class="">4.5</div>
+                    <div class="text-center">{{ round($resto->rating, 1) ?? '-' }}</div>
                 </div>
             </div>
         </div>

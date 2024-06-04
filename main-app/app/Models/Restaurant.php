@@ -23,6 +23,12 @@ class Restaurant extends Model
             // return dd($data);
 
 
+            $data = $data->map(function($restaurant) {
+                $rating = Review::getByRestaurantId($restaurant->id)->avg('rating');
+                $restaurant['rating'] = $rating;
+                return $restaurant;
+            });
+
             return $data;
 
         } catch (\Exception $e) {
@@ -44,7 +50,10 @@ class Restaurant extends Model
             $media = $response->json('restaurant_db_restaurant_media');
             $media = Restaurant::hydrate($media);
 
-            return compact('resto', 'media');
+            $rating = Review::getByRestaurantId($resto->id)->avg('rating');
+            $resto['rating'] = $rating;
+
+            return array("resto" => $resto, "media" => $media);
 
         } catch (\Exception $e) {
             // Handle Error

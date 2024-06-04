@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    public function index() 
+    {   
+        if(session('user')) {
+            return redirect()->intended('/restaurants');
+        }
+
+        return view('auth.login');
+    }
+
     public function generateShortToken($user)
     {
         $token = JWTAuth::fromUser($user);
@@ -25,12 +34,6 @@ class LoginController extends Controller
         return $shortToken;
     }
 
-    public function index() 
-        {   
-            return view('auth.login');
-    }
-
-
     public function authenticate (Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -41,27 +44,26 @@ class LoginController extends Controller
         $credentials = $validator->validated();
     
         if (!$token = Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return redirect()->back()->with('loginError', 'Email atau Password yang anda masukkan salah!');
         }
-        // dd(Auth::user());
+
         $shortToken = $this->generateShortToken(Auth::user());
     
         return redirect()->intended('/restaurants');
     }
     
-    public function logout()
-    {
-        $token = JWTAuth::getToken();
-        if ($token) {
-            JWTAuth::invalidate($token);
+    public function logout(Request $request)
+    {   
 
-            // Add the token to the blacklist for 1 minute
-            Cache::put('jwt_blacklist_' . $token, true, 1);
+        $request->session()->invalidate();
 
-            return response()->json(['message' => 'Successfully logged out']);
+        $request->session()->regenerateToken();
+
+        if(session('user')) {
+            return response()->json(['error' => 'Unable to logout'], 400);
         }
 
-        return response()->json(['error' => 'Unable to logout'], 400);
+        return redirect()->intended('/restaurants');
     }
     
     
