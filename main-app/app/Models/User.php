@@ -53,6 +53,30 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
+    public static function getUserById($userId)
+    {
+        try {
+
+            $response = Http::withHeaders([
+                'x-hasura-admin-secret' => self::$key
+            ])->get("https://just-mastiff-98.hasura.app/api/rest/get-user-id/{$userId}");
+
+            $data = $response->json('User_Restaurant');
+
+
+            if ($data) {
+                $data = User::hydrate($data)->first();
+                return $data;
+            }
+
+            return $data;
+
+        } catch (\Exception $e) {
+            // Handle Error
+            return dd($e);
+        }
+    }
+
     public static function createUser($user)
     {   
 

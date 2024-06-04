@@ -22,7 +22,7 @@
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                 </svg>
-                <p class="px-2">Username {{ $review->user_id }}</p>
+                <p class="px-2">{{ $review->username }}</p>
             </div>
             <div id="review-{{ $review->id }}" class="card mb-3" style="position: relative;">
                 <div id="review-text-{{ $review->id }}" class="card-body">
@@ -93,6 +93,7 @@
             <form action="{{ route('reviews.store') }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{ $resto->id }}" name="restaurant_id" id="restaurant_id">
+                <input type="hidden" value="{{ $user->id }}" name="user_id" id="user_id">
                 <div class="form-group mb-3">
                     <label for="review">Review:</label>
                     <textarea id="review" name="review" class="form-control" rows="4" required></textarea>

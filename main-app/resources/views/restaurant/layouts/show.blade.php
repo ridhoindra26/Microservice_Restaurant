@@ -48,7 +48,7 @@
             <div class="col-4 d-flex justify-content-end">
                 <div class="bg-danger p-2 fw-semibold text-white rounded-bottom-4">
                     <span class="material-symbols-rounded text-warning">star</span>
-                    <div class="">4.5</div>
+                    <div class="text-center">{{ round($resto->rating, 1) ?? '-' }}</div>
                 </div>
             </div>
         </div>

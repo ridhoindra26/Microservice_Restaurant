@@ -33,6 +33,12 @@ class Review extends Model
             $data = Review::hydrate($data);
             $data = $data->flatten();
 
+            $data = $data->map(function ($review) {
+                $username = User::getUserById($review->user_id)->username;
+                $review['username'] = $username ?? 'Anonymous';
+                return $review;
+            });
+
             // return response()->json($response->json(), $response->status());
             return $data;
         } catch (\Exception $e) {
