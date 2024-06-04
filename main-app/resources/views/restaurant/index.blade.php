@@ -44,7 +44,7 @@
                         <div class="position-relative">
                             <img src="{{ $resto->logo ?? asset('img/pic3.jpg') }}" class="card-img-top object-fit-cover" alt="..." height="150px">
                             <div class=" bg-warning bg-gradient text-secondary position-absolute top-0 end-0 p-2 rounded-bottom-0 rounded-end-1">
-                                4.5
+                                {{ round($resto->rating, 1) ?? '-' }}
                             </div>
                             <div class="card-body position-absolute bottom-0 px-2 pb-0">
                                 <h5 class="card-title text-white shadow-lg bg-black bg-opacity-25 px-1">{{ $resto->name }}</h5>

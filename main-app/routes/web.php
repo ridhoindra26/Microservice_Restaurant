@@ -47,4 +47,4 @@ Route::post('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavo
 
 Route::get('/profile', function () {
     return view('profile');
-})->middleware('auth');
+});

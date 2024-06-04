@@ -19,40 +19,40 @@ class ReviewController extends Controller
     protected $adminSecret = 'nUVV6HD7baTXE6wenoA6sbVbqNBZShpx0GaGBHUl7yktxvvH83L9p6d4zJiE2Z1z';
 
     public function reviewByResto($id)
-    {
+    {   
+        $user = session('user');
         $data = Restaurant::getRestaurant($id);
         $resto = $data['resto'];
         $restoMedia = $data['media'];
         $reviews = Review::getByRestaurantId($id);
 
-        // return dd($reviews);
-        return view('restaurant.show-review', compact('data', 'resto', 'restoMedia', 'reviews'));
+        return view('restaurant.show-review', compact('user','data', 'resto', 'restoMedia', 'reviews'));
     }
 
-    public function getReviewByUserId()
-    {
-        $userId = Auth::user() ?? 1;
-        $username = $userId->name ?? 'Reyhan Faqih Ashuri';
+    // public function getReviewByUserId()
+    // {
+    //     $userId = Auth::user() ?? 1;
+    //     $username = $userId->name ?? 'Reyhan Faqih Ashuri';
 
-        $reviews = Review::getByUserId($userId);
+    //     $reviews = Review::getByUserId($userId);
 
-        return view('user.show' , compact('userId', 'reviews', 'username'));
-    }
+    //     return view('user.show' , compact('userId', 'reviews', 'username'));
+    // }
 
     public function storeReview(Request $request)
     {
+        if(!session('user')) {
+            return redirect()->back()->with('message', 'Silakan login terlebih dahulu');
+        }
+
         $request->validate([
+            'user_id' => 'required',
             'review' => 'required|string',
             'rating' => 'required|integer',
             'restaurant_id' => 'required'
         ]);
-        // return($request->review);
 
-        // $user = Auth::user();
-        // $userId = $user->id;
-        $userId = Auth::user() ?? 1;
-
-        $insertReview = Review::createReview($userId, $request->restaurant_id, $request->review, $request->rating);
+        $insertReview = Review::createReview($request->user_id, $request->restaurant_id, $request->review, $request->rating);
         return redirect()->back();
     }
 
