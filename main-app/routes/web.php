@@ -43,7 +43,7 @@ Route::get('/user/review', [ReviewController::class, 'getReviewByUserId']);
 
 
 Route::post('/store-favorite/{id}', [FavoriteMenuController::class, 'storeFavorite']);
-Route::delete('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite']);
+Route::post('/delete-favorite/{id}', [FavoriteMenuController::class, 'deleteFavorite']);
 
 Route::get('/profile', function () {
     return view('profile');
