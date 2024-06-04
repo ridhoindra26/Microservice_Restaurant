@@ -18,15 +18,15 @@
     <div class="col-md-5 mb-2">
         {{-- <img src="{{ asset('img/pic1.png') }}" class="d-block w-100 object-fit-cover rounded-2 mb-2" alt="notfound" height="300px">
          --}}
-         <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
+            <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner border border-gray-400 rounded-2">
               @foreach ($restoMedia as $media)
               <div class="carousel-item active">
-                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover rounded-2" alt="..." height="300px">
+                <img src="{{ $media->photo }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
               </div>   
               @endforeach
               <div class="carousel-item">
-                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover rounded-2" alt="..." height="300px">
+                <img src="{{ $resto->logo }}" class="d-block w-100 object-fit-cover" alt="..." height="300px">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

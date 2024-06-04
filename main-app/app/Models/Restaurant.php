@@ -42,7 +42,7 @@ class Restaurant extends Model
             $media = $response->json('restaurant_db_restaurant_media');
             $media = Restaurant::hydrate($media);
 
-            return compact('resto', 'media');
+            return array("resto" => $resto, "media" => $media);
 
         } catch (\Exception $e) {
             // Handle Error
