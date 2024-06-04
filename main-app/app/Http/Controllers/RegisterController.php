@@ -18,14 +18,13 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function register(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:users',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => ''
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:6|confirmed',
         ]);
 
 
@@ -33,9 +32,8 @@ class RegisterController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $user = User::create([
-            'name' => $request->name,
-
+        $user = User::createUser([
+            'username' => $request->username,
             'email' => $request->email,
             'password' => $request->password,
         ]);
