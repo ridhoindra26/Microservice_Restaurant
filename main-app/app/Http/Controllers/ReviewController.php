@@ -41,6 +41,10 @@ class ReviewController extends Controller
 
     public function storeReview(Request $request)
     {
+        if(!session('user')) {
+            return redirect()->back()->with('message', 'Silakan login terlebih dahulu');
+        }
+
         $request->validate([
             'review' => 'required|string',
             'rating' => 'required|integer',

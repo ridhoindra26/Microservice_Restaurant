@@ -3,6 +3,14 @@
 @section('body')
 
 <div class="container my-5">
+
+    @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="d-flex mb-4">
         <h3>Comments</h3>
     </div>

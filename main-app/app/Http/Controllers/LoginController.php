@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    public function index() 
+    {   
+        if(session('user')) {
+            return redirect()->intended('/restaurants');
+        }
+
+        return view('auth.login');
+    }
+
     public function generateShortToken($user)
     {
         $token = JWTAuth::fromUser($user);
@@ -24,12 +33,6 @@ class LoginController extends Controller
 
         return $shortToken;
     }
-
-    public function index() 
-    {   
-        return view('auth.login');
-    }
-
 
     public function authenticate (Request $request)
     {
@@ -56,7 +59,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        if(session()->get('user')) {
+        if(session('user')) {
             return response()->json(['error' => 'Unable to logout'], 400);
         }
 
