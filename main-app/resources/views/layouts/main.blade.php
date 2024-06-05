@@ -20,7 +20,7 @@
             font-family: "Plus Jakarta Sans";
         }
         body {
-            background-color: #F8F8FE;
+            background-color: #EFEFEF;
         }
     </style>
 

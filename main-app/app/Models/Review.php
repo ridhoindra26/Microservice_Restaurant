@@ -60,6 +60,13 @@ class Review extends Model
             // return dd($data);
             $data = Review::hydrate($data);
             $data = $data->flatten();
+
+            $data = $data->map(function ($review) {
+                $restaurant = Restaurant::getRestaurant($review->restaurant_id)['resto']->name;
+                $review['restaurant_name'] = $restaurant;
+                return $review;
+            });
+            
             return $data;
         } catch (\Exception $e) {
             return dd($e);;

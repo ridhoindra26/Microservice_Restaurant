@@ -40,15 +40,15 @@
             <div class="row justify-content-evenly m-0 ">
                 @forelse ($restaurantData as $resto)
                 <div class="card p-0 col-sm-4 m-2 border-0 shadow-sm" style="width: 17rem;">
-                    <a href="/restaurants/{{ $resto->id }}">
+                    <a href="/restaurants/{{ $resto->id }}" class="text-decoration-none">
                         <div class="position-relative">
                             <img src="{{ $resto->logo ?? asset('img/pic3.jpg') }}" class="card-img-top object-fit-cover" alt="..." height="150px">
                             <div class=" bg-warning bg-gradient text-secondary position-absolute top-0 end-0 p-2 rounded-bottom-0 rounded-end-1">
                                 {{ round($resto->rating, 1) ?? '-' }}
                             </div>
-                            <div class="card-body position-absolute bottom-0 px-2 pb-0">
-                                <h5 class="card-title text-white shadow-lg bg-black bg-opacity-25 px-1">{{ $resto->name }}</h5>
-                                <h6 class="card-subtitle mb-2 text-white fst-italic shadow-lg bg-black bg-opacity-25 px-1">{{ $resto->category }}</h6>
+                            <div class="card-body px-3 pb-0">
+                                <h5 class="card-title text-black px-1">{{ $resto->name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-secondary fst-italic px-1">{{ $resto->category }}</h6>
                             </div>
                         </div>
                     </a>

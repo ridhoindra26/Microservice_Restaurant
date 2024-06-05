@@ -93,7 +93,7 @@
             <form action="{{ route('reviews.store') }}" method="POST">
                 @csrf
                 <input type="hidden" value="{{ $resto->id }}" name="restaurant_id" id="restaurant_id">
-                <input type="hidden" value="{{ $user->id }}" name="user_id" id="user_id">
+                <input type="hidden" value="{{ $user->id ?? '' }}" name="user_id" id="user_id">
                 <div class="form-group mb-3">
                     <label for="review">Review:</label>
                     <textarea id="review" name="review" class="form-control" rows="4" required></textarea>
