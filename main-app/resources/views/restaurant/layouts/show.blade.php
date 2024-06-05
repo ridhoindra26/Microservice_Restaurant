@@ -53,9 +53,6 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- <div class=" d-flex" id="description">
-                <p class="">{{ $resto->description }}</p>
-            </div> --}}
             <div class=" d-flex" id="address">
                 <span class="material-symbols-rounded text-secondary">place</span>
                 <p class="ms-2">{{ $resto->address }}</p>

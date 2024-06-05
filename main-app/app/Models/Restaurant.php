@@ -20,6 +20,8 @@ class Restaurant extends Model
 
             $data = $response->json('restaurant_db_restaurant');
             $data = Restaurant::hydrate($data)->flatten();
+            // return dd($data);
+
 
             $data = $data->map(function($restaurant) {
                 $rating = Review::getByRestaurantId($restaurant->id)->avg('rating');
